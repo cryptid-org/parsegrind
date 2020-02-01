@@ -1,6 +1,6 @@
-package org.jenkinsci.plugins.valgrind;
+package cryptid.parsegrind.valgrind;
 
-import org.jenkinsci.plugins.valgrind.model.ValgrindProcess;
+import cryptid.parsegrind.valgrind.model.ValgrindProcess;
 
 public class ValgrindProcessDetails {
     private ValgrindProcess process;

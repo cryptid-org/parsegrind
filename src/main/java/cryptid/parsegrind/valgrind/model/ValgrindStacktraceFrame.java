@@ -1,6 +1,6 @@
-package org.jenkinsci.plugins.valgrind.model;
+package cryptid.parsegrind.valgrind.model;
 
-import org.jenkinsci.plugins.valgrind.util.ValgrindUtil;
+import cryptid.parsegrind.valgrind.util.ValgrindUtil;
 
 import java.io.Serializable;
 

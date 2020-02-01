@@ -1,8 +1,8 @@
-package org.jenkinsci.plugins.valgrind;
+package cryptid.parsegrind.valgrind;
 
-import org.jenkinsci.plugins.valgrind.model.ValgrindError;
-import org.jenkinsci.plugins.valgrind.model.ValgrindProcess;
-import org.jenkinsci.plugins.valgrind.util.ValgrindSourceFile;
+import cryptid.parsegrind.valgrind.model.ValgrindError;
+import cryptid.parsegrind.valgrind.model.ValgrindProcess;
+import cryptid.parsegrind.valgrind.util.ValgrindSourceFile;
 
 /**
  * @author Johannes Ohlemacher

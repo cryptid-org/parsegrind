@@ -1,7 +1,7 @@
-package org.jenkinsci.plugins.valgrind.parser;
+package cryptid.parsegrind.valgrind.parser;
 
-import org.jenkinsci.plugins.valgrind.model.*;
-import org.jenkinsci.plugins.valgrind.util.ValgrindLogger;
+import cryptid.parsegrind.valgrind.model.*;
+import cryptid.parsegrind.valgrind.util.ValgrindLogger;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;

@@ -1,6 +1,6 @@
-package org.jenkinsci.plugins.valgrind.model;
+package cryptid.parsegrind.valgrind.model;
 
-import org.jenkinsci.plugins.valgrind.util.ValgrindErrorList;
+import cryptid.parsegrind.valgrind.util.ValgrindErrorList;
 
 import java.io.Serializable;
 import java.util.ArrayList;

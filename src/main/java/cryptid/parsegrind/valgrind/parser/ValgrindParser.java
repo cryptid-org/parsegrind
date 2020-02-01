@@ -1,6 +1,6 @@
-package org.jenkinsci.plugins.valgrind.parser;
+package cryptid.parsegrind.valgrind.parser;
 
-import org.jenkinsci.plugins.valgrind.model.ValgrindReport;
+import cryptid.parsegrind.valgrind.model.ValgrindReport;
 
 import java.io.IOException;
 import java.nio.file.DirectoryStream;

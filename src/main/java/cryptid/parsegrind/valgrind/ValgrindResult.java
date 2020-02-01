@@ -1,10 +1,10 @@
-package org.jenkinsci.plugins.valgrind;
+package cryptid.parsegrind.valgrind;
 
-import org.jenkinsci.plugins.valgrind.model.ValgrindError;
-import org.jenkinsci.plugins.valgrind.model.ValgrindProcess;
-import org.jenkinsci.plugins.valgrind.model.ValgrindReport;
-import org.jenkinsci.plugins.valgrind.model.ValgrindThread;
-import org.jenkinsci.plugins.valgrind.util.ValgrindSourceFile;
+import cryptid.parsegrind.valgrind.model.ValgrindError;
+import cryptid.parsegrind.valgrind.model.ValgrindProcess;
+import cryptid.parsegrind.valgrind.model.ValgrindReport;
+import cryptid.parsegrind.valgrind.model.ValgrindThread;
+import cryptid.parsegrind.valgrind.util.ValgrindSourceFile;
 
 import java.io.IOException;
 import java.util.Map;

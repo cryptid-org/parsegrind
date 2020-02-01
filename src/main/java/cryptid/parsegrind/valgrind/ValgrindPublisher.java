@@ -1,8 +1,8 @@
-package org.jenkinsci.plugins.valgrind;
+package cryptid.parsegrind.valgrind;
 
-import org.jenkinsci.plugins.valgrind.model.ValgrindProcess;
-import org.jenkinsci.plugins.valgrind.model.ValgrindReport;
-import org.jenkinsci.plugins.valgrind.parser.ValgrindParser;
+import cryptid.parsegrind.valgrind.model.ValgrindProcess;
+import cryptid.parsegrind.valgrind.model.ValgrindReport;
+import cryptid.parsegrind.valgrind.parser.ValgrindParser;
 
 import java.io.IOException;
 import java.util.Collections;

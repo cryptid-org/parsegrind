@@ -1,4 +1,4 @@
-package org.jenkinsci.plugins.valgrind.util;
+package cryptid.parsegrind.valgrind.util;
 
 public abstract class ValgrindUtil {
     public static String trimToNull(String s) {

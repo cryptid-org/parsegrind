@@ -1,4 +1,4 @@
-package org.jenkinsci.plugins.valgrind.model;
+package cryptid.parsegrind.valgrind.model;
 
 public enum ValgrindErrorKind {
     // Memcheck:
