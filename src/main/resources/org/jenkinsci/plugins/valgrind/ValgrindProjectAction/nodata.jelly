@@ -1,0 +1,13 @@
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout"
+         xmlns:t="/lib/hudson" xmlns:f="/lib/form">
+    <l:layout xmlns:rcov="/hudson/plugins/rubyMetrics/tags" css="/plugin/rubyMetrics/css/style.css">
+        <st:include it="${it.project}" page="sidepanel.jelly"/>
+        <l:main-panel>
+            <h1>No valid valgrind data available</h1>
+            <p>
+                This plugin will not report valgrind result until there is at least one success or unstable build.
+            </p>
+        </l:main-panel>
+    </l:layout>
+</j:jelly>

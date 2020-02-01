@@ -1,0 +1,24 @@
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core"
+         xmlns:st="jelly:stapler" 
+         xmlns:d="jelly:define"
+         xmlns:l="/lib/layout" 
+         xmlns:t="/lib/hudson" 
+         xmlns:f="/lib/form"
+         xmlns:i="jelly:fmt"  
+         xmlns:local="local">
+         
+    <st:header name="Content-Type" value="text/html;charset=UTF-8"/>
+    
+    <j:if test="${errorCount != 0}">
+    <tr>
+      <td class="pane-header" style="vertical-align:top;width:20em">${errorName}</td>
+      <td class="pane" style="vertical-align:top">
+		${errorCount}
+		<j:if test="${errorBytes != null}">
+		(${errorBytes} bytes)
+		</j:if>
+      </td>
+    </tr>	
+    </j:if>   
+</j:jelly>    

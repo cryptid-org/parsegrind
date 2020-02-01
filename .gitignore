@@ -1,0 +1,14 @@
+# Eclipse files:
+.classpath
+.project
+.settings
+
+#IntelliJ
+.idea
+*.iml
+
+# Packaging
+target
+
+# Debugging
+work
