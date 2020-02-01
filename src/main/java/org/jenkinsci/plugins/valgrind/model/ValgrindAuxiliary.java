@@ -2,30 +2,25 @@ package org.jenkinsci.plugins.valgrind.model;
 
 import java.io.Serializable;
 
-public class ValgrindAuxiliary implements Serializable
-{
-	private static final long	serialVersionUID	= -156868233454667586L;
-	
-	private String				description;
-	private ValgrindStacktrace	stacktrace;
-	
-	public ValgrindStacktrace getStacktrace()
-	{
-		return stacktrace;
-	}
-	
-	public void setStacktrace( ValgrindStacktrace stacktrace )
-	{
-		this.stacktrace = stacktrace;
-	}
+public class ValgrindAuxiliary implements Serializable {
+    private static final long serialVersionUID = -156868233454667586L;
 
-	public String getDescription()
-	{
-		return description;
-	}
+    private String description;
+    private ValgrindStacktrace stacktrace;
 
-	public void setDescription( String description )
-	{
-		this.description = description;
-	}		
+    public ValgrindStacktrace getStacktrace() {
+        return stacktrace;
+    }
+
+    public void setStacktrace(ValgrindStacktrace stacktrace) {
+        this.stacktrace = stacktrace;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }
