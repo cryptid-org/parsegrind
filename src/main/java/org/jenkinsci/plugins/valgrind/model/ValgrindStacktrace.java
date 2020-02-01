@@ -1,6 +1,5 @@
 package org.jenkinsci.plugins.valgrind.model;
 
-import org.apache.commons.lang.StringUtils;
 import org.jenkinsci.plugins.valgrind.util.ValgrindSourceFile;
 
 import java.io.Serializable;
@@ -48,7 +47,7 @@ public class ValgrindStacktrace implements Serializable {
         for (ValgrindStacktraceFrame frame : frames)
             files.add(frame.getFileName() + "(" + frame.getLineNumber() + ")");
 
-        return StringUtils.join(files, ", ");
+        return String.join(", ", files);
     }
 
     public void addFrame(ValgrindStacktraceFrame frame) {

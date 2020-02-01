@@ -1,13 +1,10 @@
 package org.jenkinsci.plugins.valgrind.util;
 
-import de.java2html.converter.JavaSource2HTMLConverter;
-import de.java2html.javasource.JavaSource;
-import de.java2html.javasource.JavaSourceParser;
-import de.java2html.options.JavaSourceConversionOptions;
-import org.apache.commons.io.IOUtils;
-import org.apache.tools.ant.filters.StringInputStream;
-
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.StringWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ListIterator;
@@ -97,7 +94,7 @@ public class ValgrindSourceFile {
     private void load(String filePath) {
         sourceCodeBuffer.put(filePath, null);
 
-        try {
+        /*try {
             File dir = new File("DIR", SOURCE_DIRECTORY);
 
             File file = new File(dir, filePath);
@@ -111,18 +108,6 @@ public class ValgrindSourceFile {
             }
         } catch (FileNotFoundException e) {
         } catch (IOException e) {
-        }
-    }
-
-    private String highlightSource(String src) throws IOException {
-        JavaSource source = new JavaSourceParser().parse(src);
-        JavaSource2HTMLConverter converter = new JavaSource2HTMLConverter();
-        StringWriter writer = new StringWriter();
-        JavaSourceConversionOptions options = JavaSourceConversionOptions.getDefault();
-        options.setShowLineNumbers(true);
-        options.setAddLineAnchors(true);
-        converter.convert(source, options, writer);
-
-        return writer.toString();
+        }*/
     }
 }
