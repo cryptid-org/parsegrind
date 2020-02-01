@@ -36,6 +36,7 @@
         <project.build.outputEncoding>UTF-8</project.build.outputEncoding>
 
         <!-- DEPENDENCY versions -->
+        <j2html.version>1.4.0</j2html.version>
         <picocli.version>4.1.4</picocli.version>
 
         <!-- PLUGIN versions -->
@@ -43,6 +44,12 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.j2html</groupId>
+            <artifactId>j2html</artifactId>
+            <version>${j2html.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>info.picocli</groupId>
             <artifactId>picocli</artifactId>
