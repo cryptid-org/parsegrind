@@ -6,15 +6,13 @@ import cryptid.parsegrind.valgrind.model.ValgrindReport;
 import cryptid.parsegrind.valgrind.parser.ValgrindParser;
 
 import java.io.IOException;
-import java.util.Collections;
 
 import static java.util.Objects.nonNull;
 
 public final class ValgrindPublisher {
-    public void perform(final Configuration configuration) throws IOException {
+    public ValgrindReport perform(final Configuration configuration) throws IOException {
         final ValgrindParser parser = new ValgrindParser();
 
-        final ValgrindResult valgrindResult = new ValgrindResult();
         final ValgrindReport valgrindReport = parser.parse(configuration);
 
         // Remove workspace path from executable name.
@@ -34,6 +32,6 @@ public final class ValgrindPublisher {
             }
         }
 
-        valgrindResult.setSourceFiles(Collections.emptyMap());
+        return valgrindReport;
     }
 }

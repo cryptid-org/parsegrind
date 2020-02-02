@@ -1,0 +1,38 @@
+package cryptid.parsegrind.source;
+
+import cryptid.parsegrind.Configuration;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import static java.util.Objects.requireNonNull;
+
+public class SourceReader {
+    private static final String NEW_LINE = "\n";
+
+    private final Configuration configuration;
+
+    private final int lineCount;
+
+    public SourceReader(final Configuration configuration) {
+        this.configuration = requireNonNull(configuration);
+
+        this.lineCount = configuration.linesBefore + 1 + configuration.linesAfter;
+    }
+
+    public SourceFragment read(final String path, final int line) throws IOException {
+        final int startLine = Math.max(0, line - configuration.linesBefore);
+
+        try (final Stream<String> lines = Files.lines(Paths.get(path))) {
+            final String contents = lines
+                    .skip(startLine)
+                    .limit(lineCount)
+                    .collect(Collectors.joining(NEW_LINE));
+
+            return new SourceFragment(startLine, line, contents);
+        }
+    }
+}

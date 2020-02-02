@@ -12,4 +12,6 @@ public final class Configuration {
     public int linesBefore;
 
     public int linesAfter;
+
+    public String outputFile;
 }

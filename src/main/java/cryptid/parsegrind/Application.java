@@ -1,8 +1,15 @@
 package cryptid.parsegrind;
 
+import cryptid.parsegrind.source.SourceReader;
 import cryptid.parsegrind.valgrind.ValgrindPublisher;
+import cryptid.parsegrind.valgrind.model.ValgrindReport;
+import cryptid.parsegrind.valgrind.render.ValgrindReportRenderer;
+import j2html.tags.Tag;
 import picocli.CommandLine;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.List;
 
@@ -41,15 +48,36 @@ public class Application implements Runnable {
             defaultValue = "5")
     public int linesAfter;
 
+    @CommandLine.Option(names = {"-o", "--output"},
+            description = "Output file into which the rendered report is written.",
+            required = true)
+    public String outputFile;
+
     @Override
     public void run() {
         final Configuration configuration = configurationFromApplication();
 
         final ValgrindPublisher valgrindPublisher = new ValgrindPublisher();
         try {
-            valgrindPublisher.perform(configuration);
+            final ValgrindReport report = valgrindPublisher.perform(configuration);
+
+            final SourceReader sourceReader = new SourceReader(configuration);
+
+            final ValgrindReportRenderer renderer = new ValgrindReportRenderer(configuration, report, sourceReader);
+
+            final Tag document = renderer.render();
+
+            final String renderedDocument = document.render();
+
+            writeOutput(renderedDocument, configuration.outputFile);
         } catch (final Exception e) {
             e.printStackTrace(System.err);
+        }
+    }
+
+    private void writeOutput(final String output, final String path) throws IOException  {
+        try (final var writer = new BufferedWriter(new FileWriter(path))) {
+            writer.write(output);
         }
     }
 
@@ -61,6 +89,7 @@ public class Application implements Runnable {
         configuration.sourceGlobs = sourceGlobs;
         configuration.linesBefore = linesBefore;
         configuration.linesAfter = linesAfter;
+        configuration.outputFile = outputFile;
 
         return configuration;
     }
