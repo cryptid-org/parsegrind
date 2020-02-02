@@ -2,17 +2,10 @@ package cryptid.parsegrind.valgrind.model;
 
 import cryptid.parsegrind.valgrind.util.ValgrindSourceFile;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-
-/**
- * @author Johannes Ohlemacher
- */
-public class ValgrindStacktrace implements Serializable {
-    private static final long serialVersionUID = 3165729611300651095L;
-
+public class ValgrindStacktrace {
     private List<ValgrindStacktraceFrame> frames;
 
     public void setSourceCode(ValgrindSourceFile sourceFile) {

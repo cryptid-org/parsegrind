@@ -2,14 +2,11 @@ package cryptid.parsegrind.valgrind.model;
 
 import cryptid.parsegrind.valgrind.util.ValgrindErrorList;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class ValgrindProcess implements Serializable {
-    private static final long serialVersionUID = -7073482135992069077L;
-
+public class ValgrindProcess {
     private String tool;
     private String executable;
     private List<String> arguments;
@@ -23,8 +20,8 @@ public class ValgrindProcess implements Serializable {
     private transient List<ValgrindProcess> childs = null;
 
     public boolean isValid() {
-		return executable != null;
-	}
+        return executable != null;
+    }
 
     public ValgrindProcess() {
     }

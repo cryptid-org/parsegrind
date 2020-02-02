@@ -20,9 +20,7 @@ public class MultipleGlobPathFilter implements DirectoryStream.Filter<Path> {
 
     @Override
     public boolean accept(final Path entry) {
-        final boolean result = matchers.stream()
+        return matchers.stream()
                 .anyMatch(matcher -> matcher.matches(entry));
-
-        return result;
     }
 }

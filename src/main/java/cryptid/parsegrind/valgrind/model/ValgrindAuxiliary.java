@@ -1,10 +1,6 @@
 package cryptid.parsegrind.valgrind.model;
 
-import java.io.Serializable;
-
-public class ValgrindAuxiliary implements Serializable {
-    private static final long serialVersionUID = -156868233454667586L;
-
+public class ValgrindAuxiliary {
     private String description;
     private ValgrindStacktrace stacktrace;
 

@@ -34,6 +34,6 @@ public final class ValgrindPublisher {
             }
         }
 
-        valgrindResult.setSourceFiles(Collections.<String, String>emptyMap());
+        valgrindResult.setSourceFiles(Collections.emptyMap());
     }
 }

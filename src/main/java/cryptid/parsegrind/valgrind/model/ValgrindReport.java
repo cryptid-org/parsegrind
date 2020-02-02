@@ -2,19 +2,12 @@ package cryptid.parsegrind.valgrind.model;
 
 import cryptid.parsegrind.valgrind.util.ValgrindErrorList;
 
-import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-public class ValgrindReport implements Serializable {
-    private static final long serialVersionUID = -9036045639715893780L;
-
-    @Deprecated
-    private List<ValgrindError> errors;
-
-    @SuppressWarnings("unused")
-    @Deprecated
-    private Set<String> executables;
-
+public class ValgrindReport {
     private List<ValgrindProcess> processes;
     private Map<String, String> parserErrors;
 
@@ -53,7 +46,7 @@ public class ValgrindReport implements Serializable {
     }
 
     public List<ValgrindError> getAllErrors() {
-        List<ValgrindError> list = new ArrayList<ValgrindError>();
+        final List<ValgrindError> list = new ArrayList<>();
 
         if (processes != null) {
             for (ValgrindProcess p : processes) {
@@ -63,12 +56,6 @@ public class ValgrindReport implements Serializable {
             }
         }
 
-        if (errors != null)
-            list.addAll(errors);
-
-        if (list.isEmpty())
-            return null;
-
         return list;
     }
 
@@ -77,26 +64,17 @@ public class ValgrindReport implements Serializable {
             return;
 
         if (processes == null)
-            processes = new ArrayList<ValgrindProcess>();
+            processes = new ArrayList<>();
 
         processes.addAll(valgrindReport.processes);
     }
 
-    @SuppressWarnings("deprecation")
     public ValgrindError findError(String pid, String uniqueId) {
-        //for compatibility with older records, search for error with executable == pid
-        if (errors != null) {
-            for (ValgrindError error : errors)
-                if (error.getUniqueId().equals(uniqueId) && error.getExecutable().equals(pid))
-                    return error;
-        }
-
         ValgrindProcess process = findProcess(pid);
 
         return process.findErrorByUniqueId(uniqueId);
     }
 
-    @SuppressWarnings("deprecation")
     public ValgrindProcess findProcess(String pid) {
         if (processes != null) {
             for (ValgrindProcess process : processes) {
@@ -111,13 +89,6 @@ public class ValgrindReport implements Serializable {
         process.setExecutable(pid);
         process.setPid(pid);
 
-        if (errors != null) {
-            for (ValgrindError error : errors) {
-                if (error.getExecutable().equals(pid))
-                    process.addError(error);
-            }
-        }
-
         return process;
     }
 
@@ -125,42 +96,20 @@ public class ValgrindReport implements Serializable {
         return new ValgrindErrorList(getAllErrors());
     }
 
-    @SuppressWarnings("deprecation")
     public List<ValgrindProcess> getProcesses() {
-        List<ValgrindProcess> result = new ArrayList<ValgrindProcess>();
+        final List<ValgrindProcess> result = new ArrayList<ValgrindProcess>();
 
         if (processes != null) {
             for (ValgrindProcess p : processes) {
-                if (p.isValid())
+                if (p.isValid()) {
                     result.add(p);
-            }
-        }
-
-        if (errors != null) {
-            Map<String, ValgrindProcess> lookup = new HashMap<String, ValgrindProcess>();
-            for (ValgrindError error : errors) {
-                if (!lookup.containsKey(error.getExecutable())) {
-                    ValgrindProcess process = new ValgrindProcess();
-                    process.setExecutable(error.getExecutable());
-                    process.setPid(error.getExecutable());
-
-                    lookup.put(error.getExecutable(), process);
                 }
-
-                lookup.get(error.getExecutable()).addError(error);
-            }
-
-            for (ValgrindProcess p : lookup.values()) {
-                if (p.isValid())
-                    result.add(p);
             }
         }
 
-        if (result.isEmpty())
-            return null;
-
-        for (ValgrindProcess p : result)
+        for (ValgrindProcess p : result) {
             p.setupParentChilds(processes);
+        }
 
         return result;
     }

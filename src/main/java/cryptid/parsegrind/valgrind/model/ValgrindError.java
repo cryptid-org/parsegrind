@@ -3,24 +3,14 @@ package cryptid.parsegrind.valgrind.model;
 import cryptid.parsegrind.valgrind.util.ValgrindSourceFile;
 import cryptid.parsegrind.valgrind.util.ValgrindUtil;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-
-/**
- * @author Johannes Ohlemacher
- */
-public class ValgrindError implements Serializable {
-    private static final long serialVersionUID = 6470943829358084900L;
-
-    @Deprecated
+public class ValgrindError {
     private String executable;
-    @SuppressWarnings("unused")
-    @Deprecated
+
     private String pid;
-    @SuppressWarnings("unused")
-    @Deprecated
+
     private String ppid;
 
     private String uniqueId;

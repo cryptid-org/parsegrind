@@ -17,26 +17,26 @@ public class Application implements Runnable {
         new CommandLine(new Application()).execute(args);
     }
 
-    @CommandLine.Option(names = { "--source-glob" },
+    @CommandLine.Option(names = {"--source-glob"},
             description = "Glob pattern to use when matching source files.",
             required = true)
     public List<String> sourceGlobs;
 
-    @CommandLine.Option(names = { "--valgrind-glob" },
+    @CommandLine.Option(names = {"--valgrind-glob"},
             description = "Glob pattern to use when matching valgrind output files.",
             required = true)
     public List<String> xmlGlobs;
 
-    @CommandLine.Option(names = { "--base-directory" },
+    @CommandLine.Option(names = {"--base-directory"},
             description = "The workspace directory. When omitted, the current directory will be used.")
     public String baseDirectory;
 
-    @CommandLine.Option(names = { "--lines-before" },
+    @CommandLine.Option(names = {"--lines-before"},
             description = "Number of lines to output before an offending line.",
             defaultValue = "5")
     public int linesBefore;
 
-    @CommandLine.Option(names = { "--lines-after" },
+    @CommandLine.Option(names = {"--lines-after"},
             description = "Number of lines to output after an offending line.",
             defaultValue = "5")
     public int linesAfter;

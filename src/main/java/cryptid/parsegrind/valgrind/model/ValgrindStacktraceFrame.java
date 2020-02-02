@@ -2,12 +2,7 @@ package cryptid.parsegrind.valgrind.model;
 
 import cryptid.parsegrind.valgrind.util.ValgrindUtil;
 
-import java.io.Serializable;
-
-
-public class ValgrindStacktraceFrame implements Serializable {
-    private static final long serialVersionUID = -2774574337822108808L;
-
+public class ValgrindStacktraceFrame {
     private String objectName;
     private String directoryName;
     private String fileName;
