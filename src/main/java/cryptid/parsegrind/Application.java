@@ -53,6 +53,11 @@ public class Application implements Runnable {
             required = true)
     public String outputFile;
 
+    @CommandLine.Option(names = {"--repository-base-link"},
+            description = "Base repository link (for example, GitHub) to which the file paths will be relativized to.",
+            required = true)
+    public String repositoryBaseLink;
+
     @Override
     public void run() {
         final Configuration configuration = configurationFromApplication();
@@ -90,6 +95,7 @@ public class Application implements Runnable {
         configuration.linesBefore = linesBefore;
         configuration.linesAfter = linesAfter;
         configuration.outputFile = outputFile;
+        configuration.repositoryBaseLink = repositoryBaseLink;
 
         return configuration;
     }

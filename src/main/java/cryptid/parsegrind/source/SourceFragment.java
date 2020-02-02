@@ -26,4 +26,13 @@ public final class SourceFragment {
     public String getLines() {
         return lines;
     }
+
+    @Override
+    public String toString() {
+        return "SourceFragment{" +
+                "sourceFileStartLine=" + sourceFileStartLine +
+                ", sourceFileErrorLine=" + sourceFileErrorLine +
+                ", lines='" + lines + '\'' +
+                '}';
+    }
 }

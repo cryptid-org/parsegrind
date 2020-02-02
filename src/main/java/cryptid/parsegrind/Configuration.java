@@ -14,4 +14,6 @@ public final class Configuration {
     public int linesAfter;
 
     public String outputFile;
+
+    public String repositoryBaseLink;
 }

@@ -24,15 +24,15 @@ public class SourceReader {
     }
 
     public SourceFragment read(final String path, final int line) throws IOException {
-        final int startLine = Math.max(0, line - configuration.linesBefore);
+        final int linesToSkip = Math.max(0, line - configuration.linesBefore - 1);
 
         try (final Stream<String> lines = Files.lines(Paths.get(path))) {
             final String contents = lines
-                    .skip(startLine)
+                    .skip(linesToSkip)
                     .limit(lineCount)
                     .collect(Collectors.joining(NEW_LINE));
 
-            return new SourceFragment(startLine, line, contents);
+            return new SourceFragment(linesToSkip + 1, line, contents);
         }
     }
 }
