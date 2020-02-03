@@ -3,7 +3,7 @@
 
     <groupId>cryptid</groupId>
     <artifactId>parsegrind</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <name>Parsegrind</name>
     <description>Valgrind XML output to HTML converter.</description>
 

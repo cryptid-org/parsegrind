@@ -10,10 +10,10 @@ import picocli.CommandLine;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
-
-import static java.util.Objects.requireNonNullElseGet;
+import java.util.Optional;
 
 @CommandLine.Command(
         name = "parsegrind",
@@ -88,7 +88,11 @@ public class Application implements Runnable {
     private Configuration configurationFromApplication() {
         final Configuration configuration = new Configuration();
 
-        configuration.baseDirectory = requireNonNullElseGet(baseDirectory, this::getCurrentDirectory);
+        configuration.baseDirectory = Optional.ofNullable(baseDirectory)
+                .map(Paths::get)
+                .map(Path::toAbsolutePath)
+                .map(Path::toString)
+                .orElseGet(this::getCurrentDirectory);
         configuration.xmlGlobs = xmlGlobs;
         configuration.sourceGlobs = sourceGlobs;
         configuration.linesBefore = linesBefore;
