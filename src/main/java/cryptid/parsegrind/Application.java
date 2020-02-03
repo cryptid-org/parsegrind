@@ -91,6 +91,7 @@ public class Application implements Runnable {
         configuration.baseDirectory = Optional.ofNullable(baseDirectory)
                 .map(Paths::get)
                 .map(Path::toAbsolutePath)
+                .map(Path::normalize)
                 .map(Path::toString)
                 .orElseGet(this::getCurrentDirectory);
         configuration.xmlGlobs = xmlGlobs;
