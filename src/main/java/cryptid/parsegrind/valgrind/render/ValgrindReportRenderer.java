@@ -44,7 +44,17 @@ public class ValgrindReportRenderer {
 
     public Tag render() {
         final List<ValgrindProcess> processesWithErrors = report.getProcesses().stream()
-                .filter(process -> !process.getErrors().isEmpty())
+                .filter(process -> {
+                    if (isNull(process)) {
+                        return false;
+                    }
+
+                    if (isNull(process.getErrors())) {
+                        return false;
+                    }
+
+                    return !process.getErrors().isEmpty();
+                })
                 .collect(toList());
 
         return html(
