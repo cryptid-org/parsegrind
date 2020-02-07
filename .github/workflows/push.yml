@@ -15,13 +15,3 @@ jobs:
         java-version: 1.11
     - name: Build with Maven
       run: mvn -B package --file pom.xml
-    - name: Get Current Version
-      run: |
-        PROJECT_VERSION=$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec)
-        ::set-output name=parsegrind_version::$PROJECT_VERSION
-      outputs:
-        parsegrind_version:
-            description: 'The version of Parsegrind'
-
-
-
