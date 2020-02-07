@@ -1,6 +1,8 @@
-name: Java CI
+name: Build and Deploy Release
 
-on: [push]
+on:
+  release:
+    types: [published]
 
 jobs:
   build:
