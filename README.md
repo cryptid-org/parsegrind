@@ -11,7 +11,7 @@ First download the latest release from the [GitHub Releases](https://github.com/
 Afterwards, execute it using `java -jar`:
 
 ~~~~
-$ java -jar parsegrind-x.x.x.jar
+$ java -jar parsegrind-cli-1.1.3.jar
 Missing required options [--source-glob=<sourceGlobs>, --valgrind-glob=<xmlGlobs>, --output=<outputFile>]
 Usage: parsegrind [-hV] [--base-directory=<baseDirectory>]
                   [--lines-after=<linesAfter>] [--lines-before=<linesBefore>]
@@ -58,7 +58,7 @@ Afterwards, the appropriate dependency can be added:
 <dependency>
   <groupId>cryptid</groupId>
   <artifactId>parsegrind-lib</artifactId>
-  <version>1.1.0</version>
+  <version>1.1.3</version>
 <dependency>
 ~~~~
 
