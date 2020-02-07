@@ -39,7 +39,7 @@ public class ValgrindReportRenderer {
         this.report = requireNonNull(report);
         this.sourceReader = requireNonNull(sourceReader);
 
-        this.sourcePathFilter = new MultipleGlobPathFilter(configuration.sourceGlobs);
+        this.sourcePathFilter = new MultipleGlobPathFilter(configuration.getSourceGlobs());
     }
 
     public Tag render() {
@@ -212,12 +212,12 @@ public class ValgrindReportRenderer {
     private Tag fileRow(final ValgrindStacktraceFrame frame) {
         final DomContent renderPath;
 
-        if (nonNull(frame.getFilePathAndLine()) && frame.getFilePathAndLine().startsWith(configuration.baseDirectory)) {
-            if (nonNull(configuration.repositoryBaseLink)) {
-                renderPath = a(frame.getFilePathAndLine().substring(configuration.baseDirectory.length()))
-                        .withHref(configuration.repositoryBaseLink + "/" + frame.getFilePath() + "L" + frame.getLineNumber());
+        if (nonNull(frame.getFilePathAndLine()) && frame.getFilePathAndLine().startsWith(configuration.getBaseDirectory())) {
+            if (nonNull(configuration.getRepositoryBaseLink())) {
+                renderPath = a(frame.getFilePathAndLine().substring(configuration.getBaseDirectory().length()))
+                        .withHref(configuration.getRepositoryBaseLink() + "/" + frame.getFilePath() + "L" + frame.getLineNumber());
             } else {
-                renderPath = text(frame.getFilePathAndLine().substring(configuration.baseDirectory.length()));
+                renderPath = text(frame.getFilePathAndLine().substring(configuration.getBaseDirectory().length()));
             }
 
         } else {

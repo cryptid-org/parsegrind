@@ -12,9 +12,9 @@ public class ValgrindParser {
     public ValgrindReport parse(final Configuration configuration) throws IOException {
         final ValgrindReport valgrindReport = new ValgrindReport();
 
-        final MultipleGlobPathFilter filter = new MultipleGlobPathFilter(configuration.xmlGlobs);
+        final MultipleGlobPathFilter filter = new MultipleGlobPathFilter(configuration.getXmlGlobs());
 
-        Files.find(Paths.get(configuration.baseDirectory),
+        Files.find(Paths.get(configuration.getBaseDirectory()),
                 Integer.MAX_VALUE,
                 (filePath, fileAttr) -> fileAttr.isRegularFile() && filter.accept(filePath))
                 .forEach(filePath -> {

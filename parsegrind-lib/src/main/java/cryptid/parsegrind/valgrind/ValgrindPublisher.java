@@ -22,8 +22,8 @@ public final class ValgrindPublisher {
                     continue;
                 }
 
-                if (p.getExecutable().startsWith(configuration.baseDirectory)) {
-                    p.setExecutable(p.getExecutable().substring(configuration.baseDirectory.length()));
+                if (p.getExecutable().startsWith(configuration.getBaseDirectory())) {
+                    p.setExecutable(p.getExecutable().substring(configuration.getBaseDirectory().length()));
                 }
 
                 if (p.getExecutable().startsWith("./")) {

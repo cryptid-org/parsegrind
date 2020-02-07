@@ -1,10 +1,5 @@
 package cryptid.parsegrind;
 
-import cryptid.parsegrind.source.SourceReader;
-import cryptid.parsegrind.valgrind.ValgrindPublisher;
-import cryptid.parsegrind.valgrind.model.ValgrindReport;
-import cryptid.parsegrind.valgrind.render.ValgrindReportRenderer;
-import j2html.tags.Tag;
 import picocli.CommandLine;
 
 import java.io.BufferedWriter;
@@ -20,7 +15,7 @@ import java.util.Optional;
         mixinStandardHelpOptions = true,
         version = "1.0.0")
 public class Application implements Runnable {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         new CommandLine(new Application()).execute(args);
     }
 
@@ -59,21 +54,16 @@ public class Application implements Runnable {
 
     @Override
     public void run() {
-        final Configuration configuration = configurationFromApplication();
+        final var configuration = configurationFromApplication();
 
-        final ValgrindPublisher valgrindPublisher = new ValgrindPublisher();
         try {
-            final ValgrindReport report = valgrindPublisher.perform(configuration);
+            final var parsegrind = Parsegrind.fromConfiguration(configuration);
 
-            final SourceReader sourceReader = new SourceReader(configuration);
+            final var report = parsegrind.parse();
 
-            final ValgrindReportRenderer renderer = new ValgrindReportRenderer(configuration, report, sourceReader);
+            final var renderedDocument = parsegrind.render(report);
 
-            final Tag document = renderer.render();
-
-            final String renderedDocument = document.render();
-
-            writeOutput(renderedDocument, configuration.outputFile);
+            writeOutput(renderedDocument, outputFile);
         } catch (final Exception e) {
             e.printStackTrace(System.err);
         }
@@ -86,22 +76,21 @@ public class Application implements Runnable {
     }
 
     private Configuration configurationFromApplication() {
-        final Configuration configuration = new Configuration();
-
-        configuration.baseDirectory = Optional.ofNullable(baseDirectory)
+        final String normalizedBaseDirectory = Optional.ofNullable(baseDirectory)
                 .map(Paths::get)
                 .map(Path::toAbsolutePath)
                 .map(Path::normalize)
                 .map(Path::toString)
                 .orElseGet(this::getCurrentDirectory);
-        configuration.xmlGlobs = xmlGlobs;
-        configuration.sourceGlobs = sourceGlobs;
-        configuration.linesBefore = linesBefore;
-        configuration.linesAfter = linesAfter;
-        configuration.outputFile = outputFile;
-        configuration.repositoryBaseLink = repositoryBaseLink;
 
-        return configuration;
+        return Configuration.builder()
+                .sourceGlobs(sourceGlobs)
+                .xmlGlobs(xmlGlobs)
+                .baseDirectory(normalizedBaseDirectory)
+                .linesBefore(linesBefore)
+                .linesAfter(linesAfter)
+                .repositoryBaseLink(repositoryBaseLink)
+                .build();
     }
 
     private String getCurrentDirectory() {

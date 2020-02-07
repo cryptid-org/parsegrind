@@ -20,11 +20,11 @@ public class SourceReader {
     public SourceReader(final Configuration configuration) {
         this.configuration = requireNonNull(configuration);
 
-        this.lineCount = configuration.linesBefore + 1 + configuration.linesAfter;
+        this.lineCount = configuration.getLinesBefore() + 1 + configuration.getLinesAfter();
     }
 
     public SourceFragment read(final String path, final int line) throws IOException {
-        final int linesToSkip = Math.max(0, line - configuration.linesBefore - 1);
+        final int linesToSkip = Math.max(0, line - configuration.getLinesBefore() - 1);
 
         try (final Stream<String> lines = Files.lines(Paths.get(path))) {
             final String contents = lines
