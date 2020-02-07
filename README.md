@@ -38,6 +38,28 @@ Usage: parsegrind [-hV] [--base-directory=<baseDirectory>]
                   Glob pattern to use when matching valgrind output files.
 ~~~~
 
+### Example Output
+
+**Preamble**
+
+![Preamble](docs/img/example-1.png)
+
+**Memory Leak and Stacktrace**
+
+![Memory Leak and Stacktrace](docs/img/example-2.png)
+
+### Example Usage
+
+Parsegrind is used for example in [CryptID.native](https://github.com/cryptid-org/cryptid-native)'s Azure Pipelines workflow as follows:
+
+~~~~
+java -jar parsegrind.jar \
+    --base-directory=../ \
+    --source-glob=**/*.c \
+    --valgrind-glob=**/*.memcheck.xml \
+    --output=../memcheck.html
+~~~~
+
 ## Library
 
 ### Add Dependency
